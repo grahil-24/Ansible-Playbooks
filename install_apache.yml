@@ -5,7 +5,7 @@
   tasks:
 
     - name: install httpd and php package and update repository index
-      dnf:
+      package:
         name: 
           - "{{apache_package}}"
           - "{{php_package}}"
