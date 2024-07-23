@@ -3,19 +3,12 @@
 - hosts: all
   become: true
   tasks:
-    - name: update repository index
-      dnf: 
-        update_cache: yes
-      when: ansible_distribution in ["CentOS", "Amazon", "Fedora", "RedHat"]
 
-    - name: install httpd package
+    - name: install httpd and php package and update repository index
       dnf:
-        name: httpd
+        name: 
+          - "{{apache_package}}"
+          - "{{php_package}}"
         state: latest
-      when: ansible_distribution in ["CentOS", "Amazon", "Fedora", "RedHat"]
-
-    - name: add php suppport for apache
-      dnf: 
-        name: php
-        state: latest
+        update_cache: yes
       when: ansible_distribution in ["CentOS", "Amazon", "Fedora", "RedHat"]
