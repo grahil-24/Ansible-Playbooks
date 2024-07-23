@@ -7,12 +7,12 @@
       dnf: 
         update_cache: yes
 
-    - name: install httpd package
+    - name: remove httpd package
       dnf:
         name: httpd
         state: absent
 
-    - name: add php suppport for apache
+    - name: remove php
       dnf: 
         name: php
         state: absent
