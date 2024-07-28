@@ -19,6 +19,21 @@
         update_cache: yes
       when: ansible_distribution == "Ubuntu"
 
+    - name: change e-mail address for admin
+      tags: apache,amazon,httpd
+      lineinfile: 
+        path: /etc/httpd/conf/httpd.conf
+        regexp: '^ServerAdmin'
+        line: ServerAdmin somebody@somewhere.net
+      when: ansible_distribution == "Amazon"
+
+    - name: restart httpd
+      tags: apache, centos, httpd
+      service: 
+        name: httpd
+        state: restarted
+      when: httpd.changed
+
     - name: copy default html file for site
       tags: apache, apache2, httpd
       copy: 
@@ -27,3 +42,4 @@
         owner: root
         group: root
         mode: 0644
+    
