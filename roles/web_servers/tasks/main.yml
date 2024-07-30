@@ -1,0 +1,24 @@
+- name: install httpd package
+  tags: apache, Amazon, httpd
+  dnf: 
+    name: 
+      - httpd
+      - php
+    state: latest
+  when: ansible_distribution == "Amazon"
+
+- name: start and enable httpd
+  tags: apache, httpd, Amazon
+  service: 
+    name: httpd
+    state: started
+    enabled: yes
+  when: ansible_distribution == "Amazon"
+
+- name: copy html file for site
+  copy: 
+    src: default_site.html
+    dest: /var/www/html/index.html
+    owner: root
+    group: root
+    mode: 0644
