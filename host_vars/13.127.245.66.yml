@@ -1,0 +1,5 @@
+apache_package_name: httpd
+apache_service: httpd
+php_package_name: php
+ssh_users: "rahil admin"
+ssh_template_file: sshd_config_ec2.j2
